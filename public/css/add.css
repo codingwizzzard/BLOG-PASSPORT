@@ -1,0 +1,8 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #0366d6 !important;
+    color: white;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG - View Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="../css/viewtbl.css">
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+
+    <main class="container-fluid my-5">
+        <h1 class="text-center mb-5 text-primary">Blogs List</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Blog Title</th>
+                        <th>Blog Desc</th>
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Blogger's Name</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.map(val=> { %>
+                    <tr>
+                        <td style="width: 300px;">
+                            <%= val.title %>
+                        </td>
+                        <td class="description-cell" style="width: 450px;">
+                            <%= val.description %>
+                        </td>
+                        <td>
+                            <img src="<%= val.image %>" alt="image">
+                        </td>
+                        <td>
+                            <%= val.category %>
+                        </td>
+                        <td>
+                            <%= val.name %>
+                        </td>
+                        <td>
+                            <%= val.date %>
+                        </td>
+                        <td>
+                            <a href="/deleteData/<%= val._id %>" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <a href="/editData/<%= val._id %>" class="btn btn-primary btn-sm">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
