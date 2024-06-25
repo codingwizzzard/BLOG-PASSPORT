@@ -109,33 +109,8 @@ const loginPage = (req, res) => {
     return res.render('login')
 }
 
-const login = async (req, res) => {
-
-    try {
-        const { username, password } = req.body
-
-        let user = await userDB.findOne({ username: username })
-        console.log(user)
-
-        if (!user) {
-            console.log("User not verfied")
-            return res.redirect('/logout')
-        }
-
-        if (user.password != password) {
-            console.log("wrong password")
-            return res.redirect('/logout')
-        }
-
-        res.cookie('user', user.id).redirect('/')
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 const logout = async (req, res) => {
     console.log("before logging out :", req.user)
-    res.clearCookie('user')
     req.logOut((err) => {
         if (err) {
             console.log(err)
@@ -158,4 +133,4 @@ const profile = (req, res) => {
     res.send(req.user)
 }
 
-module.exports = { indexPage, add, addPage, editData, viewtbl, deleteData, signupPage, login, loginPage, logout, getData, signup, profile }
+module.exports = { indexPage, add, addPage, editData, viewtbl, deleteData, signupPage, loginPage, logout, getData, signup, profile }
